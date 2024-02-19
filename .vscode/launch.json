@@ -11,7 +11,7 @@
             "preLaunchTask": "runkiosk",
             "program": "${file}",
             "console": "integratedTerminal",
-            "args": ["21058040"]
+            "args": []
         }
     ]
 }
