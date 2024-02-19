@@ -28,12 +28,13 @@ with sync_playwright() as p:
     page.get_by_role("textbox").fill(ID)
     page.get_by_text("Go").click()
     # up to here, it works. need to handle the quitting aspect... maybe wait until back to the logged out page then close the browser?
+    print(page.url)
     print("selecting election...")
     page.wait_for_url("**/SelectPost.aspx",timeout=None)
     print("selecting post...")
     page.wait_for_url("**/SelectElection.aspx",timeout=None)
     print("back to select election!")
-    page.goto("")
+    page.goto("https://viljowilding.github.io/polling-place/thank-you")
     page.wait_for_timeout(10000)
     page.close()
     
