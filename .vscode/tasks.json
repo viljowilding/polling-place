@@ -1,0 +1,9 @@
+{
+    "version": "2.0.0",
+    "tasks": [{
+        "label": "runkiosk",
+        "command": "chrome.exe", // Could be any other shell command
+        "args": ["--kiosk","--remote-debugging-port=9222"],
+        "type": "shell"
+    }]
+}
