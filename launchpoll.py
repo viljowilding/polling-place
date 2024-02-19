@@ -1,7 +1,7 @@
 from playwright.sync_api import sync_playwright
 import os, sys
 from dotenv import load_dotenv
-
+  
 load_dotenv()
 args = sys.argv[1:]
 if len(args)==0:
@@ -16,7 +16,7 @@ with sync_playwright() as p:
         print("got page")
     except Exception:
          print("oops exception")
-         browser = p.chromium.launch(channel="msedge",headless=False,args=["--kiosk"])
+         browser = p.chromium.launch(channel="chrome",headless=False,args=["--kiosk"])
          page = browser.new_context().new_page()
     page.goto("https://uwe.admin.ukmsl.net/voting/")
     page.get_by_label("Username").fill(os.getenv('MSL_USERNAME'))
@@ -31,9 +31,9 @@ with sync_playwright() as p:
         # viljo remember to change this
         page.locator("input#ContentPlaceHolder_rptElections_btnSelect_2").click()
     else:
-        page.wait_for_url("**/SelectPost.aspx",timeout=None)
+        page.wait_for_url("**/SelectPost.aspx",timeout=600*1000)
     print("selecting post...")
-    page.wait_for_url("**/SelectElection.aspx",timeout=None)
+    page.wait_for_url("**/SelectElection.aspx",timeout=600*1000)
     print("back to select election!")
     page.goto("https://viljowilding.github.io/polling-place/thank-you")
     page.wait_for_timeout(10000)

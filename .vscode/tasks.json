@@ -4,6 +4,13 @@
         "label": "runkiosk",
         "command": "chrome.exe", // Could be any other shell command
         "args": ["--kiosk","--remote-debugging-port=9222", "--incognito", "https://viljowilding.github.io/polling-place/"],
+        "type": "shell",
+        "dependsOn": "closechrome"
+    },
+    {
+        "label": "closechrome",
+        "command": "Stop-Process",
+        "args": ["-Name","'chrome'"],
         "type": "shell"
     }]
 }
