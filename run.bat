@@ -1,3 +1,5 @@
 @set path=%path%;%PUBLIC%;%ProgramFiles%\Google\Chrome\Application
 @pip3 install python-dotenv playwright requests psutil
-@python daemon.py
+@pythonw daemon.py
+@pythonw client-script.py
+@pythonw daemon.py offline

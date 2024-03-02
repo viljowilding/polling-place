@@ -1,9 +1,5 @@
-try:
-    import subprocess
-    import sys, requests
-except:
-    subprocess.run(shell=True,args=["pip3","install","python-dotenv","playwright","requests","psutil"])
-    import sys, requests
+import subprocess
+import sys, requests
 from dotenv import load_dotenv
 from os import getenv
 load_dotenv()
