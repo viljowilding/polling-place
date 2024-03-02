@@ -25,7 +25,7 @@ def getChrome():
              return proc.parent()
 
 def openChrome():
-    runSubprocess(["chrome.exe","--kiosk","--remote-debugging-port=9222", "--incognito", "https://viljowilding.github.io/polling-place/"],False)
+    runSubprocess(["chrome.exe","--kiosk","--remote-debugging-port=9222", "--incognito", "https://msg.pollctrl.app"],False)
 
 def getStatus():
     try:

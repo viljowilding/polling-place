@@ -32,7 +32,7 @@ with sync_playwright() as p:
     print("selecting post...")
     page.wait_for_url("**/SelectElection.aspx",timeout=6000000)
     print("back to select election!")
-    page.goto("https://viljowilding.github.io/polling-place/thank-you")
+    page.goto("https://msg.pollctrl.app/thank-you")
     page.wait_for_timeout(10000)
     page.close()
     
