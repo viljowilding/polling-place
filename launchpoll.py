@@ -4,6 +4,13 @@ from dotenv import load_dotenv
   
 load_dotenv()
 args = sys.argv[1:]
+
+def quitIfQuit(page):
+    quit = page.url.find("VoterSearch.aspx")
+    if quit != -1:
+        browser.close()
+        sys.exit()
+
 if len(args)==0:
     ID="12345768" # test ID
 else:
@@ -27,12 +34,17 @@ with sync_playwright() as p:
     page.get_by_role("textbox").fill(ID)
     page.get_by_text("Go").click()
     page.on("dialog", lambda dialog: dialog.accept())
+    page.on("load", lambda: quitIfQuit(page))
     print("selecting election...")
-    page.wait_for_url("**/SelectPost.aspx",timeout=6000000)
-    print("selecting post...")
-    page.wait_for_url("**/SelectElection.aspx",timeout=6000000)
-    print("back to select election!")
-    page.goto("https://msg.pollctrl.app/thank-you")
-    page.wait_for_timeout(10000)
-    page.close()
+    page.wait_for_load_state()
+    try:
+        page.wait_for_url("**/SelectPost.aspx",timeout=6000000)
+        print("selecting post...")
+        page.wait_for_url("**/SelectElection.aspx",timeout=6000000)
+        print("back to select election!")
+        page.goto("https://msg.pollctrl.app/thank-you")
+        page.wait_for_timeout(10000)
+        page.close()
+    except:
+        sys.exit()
     
