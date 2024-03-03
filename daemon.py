@@ -16,7 +16,6 @@ def runSubprocess(args,wait=False):
 
 def online():
     requests.post(url+'online',data=payload)
-    runSubprocess(["python","client-script.py"],True)
 
 def offline():
     requests.post(url+'offline',data=payload)
